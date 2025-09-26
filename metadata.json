@@ -1,0 +1,5 @@
+{
+  "name": "AI Math Solver",
+  "description": "An AI-powered math problem solver that identifies problems as solved or unsolved, provides step-by-step solutions or detailed explanations, and offers an interactive AI chat for further assistance.",
+  "requestFramePermissions": []
+}
