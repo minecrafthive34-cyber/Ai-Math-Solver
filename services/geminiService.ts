@@ -46,7 +46,7 @@ const solutionResponseSchema = {
     required: ['status', 'title', 'classification', 'difficulty', 'difficultyRating', 'difficultyJustification', 'keyConcepts', 'reasoning']
 };
 
-const exampleProblemsSchema = {
+const initialDataSchema = {
     type: Type.OBJECT,
     properties: {
         problems: {
@@ -59,20 +59,13 @@ const exampleProblemsSchema = {
                 },
                 required: ['id', 'problem']
             }
-        }
-    },
-    required: ['problems']
-};
-
-const mathFactSchema = {
-    type: Type.OBJECT,
-    properties: {
+        },
         fact: {
             type: Type.STRING,
             description: "A surprising and fun math fact, explained simply."
         }
     },
-    required: ['fact']
+    required: ['problems', 'fact']
 };
 
 
@@ -80,31 +73,20 @@ export async function generateInitialData(language: 'en' | 'ar'): Promise<{ exam
     try {
         const langName = language === 'ar' ? 'Arabic' : 'English';
 
-        const [examplesResponse, factResponse] = await Promise.all([
-            ai.models.generateContent({
-                model: 'gemini-2.5-flash',
-                contents: `Generate 4 diverse and simple math problems suitable for an educational app. Provide a unique id for each. Your response must be in ${langName}.`,
-                config: {
-                    responseMimeType: 'application/json',
-                    responseSchema: exampleProblemsSchema,
-                },
-            }),
-            ai.models.generateContent({
-                model: 'gemini-2.5-flash',
-                contents: `Provide one surprising and fun math fact of the day. Keep it short and easy to understand. Your response must be in ${langName}.`,
-                config: {
-                    responseMimeType: 'application/json',
-                    responseSchema: mathFactSchema,
-                },
-            })
-        ]);
+        const response = await ai.models.generateContent({
+            model: 'gemini-2.5-flash',
+            contents: `Generate 4 diverse and simple math problems suitable for an educational app, and also provide one surprising and fun math fact of the day. Provide a unique id for each problem. Keep the fact short and easy to understand. Your response must be in ${langName}.`,
+            config: {
+                responseMimeType: 'application/json',
+                responseSchema: initialDataSchema,
+            },
+        });
 
-        const examplesParsed = JSON.parse(examplesResponse.text.trim());
-        const factParsed = JSON.parse(factResponse.text.trim());
+        const parsedData = JSON.parse(response.text.trim());
 
         return {
-            examples: examplesParsed.problems as ExampleProblem[],
-            fact: factParsed.fact as string,
+            examples: parsedData.problems as ExampleProblem[],
+            fact: parsedData.fact as string,
         };
 
     } catch (error) {

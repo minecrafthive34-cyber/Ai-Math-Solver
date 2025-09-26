@@ -6,12 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI Math Solver</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&family=Inter:wght@400;700;800&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU07EWpWzlzY8CwnwJUfpzU/ZEdteK5TUb6ftGpF/sp/DzaNVYseGY0" crossorigin="anonymous">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmNOAxNONw" crossorigin="anonymous"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script type="importmap">
 {
   "imports": {
@@ -57,10 +63,20 @@
 
   /* KaTeX font size adjustment */
   .katex { font-size: 1.1em; }
+
+  /* KaTeX hover effect */
+  .katex, .katex-display {
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+  }
+  .katex:hover, .katex-display:hover {
+    background-color: rgba(59, 130, 246, 0.1); /* blue-500 with 10% opacity, works on light/dark mode */
+  }
 </style>
 </head>
-  <body class="bg-gray-900 text-gray-200">
-    <div id="loading-screen" class="fixed inset-0 bg-gray-900 z-[100] flex flex-col justify-center items-center transition-opacity duration-500 ease-in-out">
+  <body>
+    <div id="loading-screen" class="fixed inset-0 bg-white dark:bg-gray-900 z-[100] flex flex-col justify-center items-center transition-opacity duration-500 ease-in-out">
         <h1 class="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-4">
             AI Math Solver
         </h1>

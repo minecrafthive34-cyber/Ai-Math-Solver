@@ -80,8 +80,8 @@ const ProblemInput: React.FC<ProblemInputProps> = ({ onSolve, onClear, isLoading
   const areExamplesDisabled = isLoading || !!imageFile;
 
   return (
-    <div className="bg-gray-800 p-4 sm:p-6 rounded-lg border border-gray-700 shadow-lg">
-      <h2 className="text-2xl font-bold mb-4 text-blue-400">{t('enterProblem')}</h2>
+    <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg border border-gray-200 dark:border-gray-700 shadow-lg">
+      <h2 className="text-2xl font-bold mb-4 text-blue-500 dark:text-blue-400">{t('enterProblem')}</h2>
       <form onSubmit={handleSubmit}>
         {imagePreview ? (
             <div className="relative mb-4 group">
@@ -94,22 +94,22 @@ const ProblemInput: React.FC<ProblemInputProps> = ({ onSolve, onClear, isLoading
                     >
                     <CloseIcon className="w-5 h-5" />
                 </button>
-                <p className="text-center text-sm text-gray-400 mt-2">{t('imageSelected')}</p>
+                <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-2">{t('imageSelected')}</p>
             </div>
         ) : (
              <textarea
                 value={problem}
                 onChange={(e) => setProblem(e.target.value)}
                 placeholder={t('placeholder')}
-                className="w-full h-40 p-3 bg-gray-900 border border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-200 resize-none text-gray-200 placeholder-gray-500"
+                className="w-full h-40 p-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-200 resize-none text-gray-900 dark:text-gray-200 placeholder-gray-500"
                 disabled={isLoading || !!imageFile}
             />
         )}
         
         {problem && !imagePreview && (
-            <div className="mt-4 p-3 bg-gray-900 border border-gray-600 rounded-md">
-                <h4 className="text-sm font-semibold text-gray-400 mb-2">{t('livePreview')}</h4>
-                <div className="min-h-[40px] text-gray-200 text-start">
+            <div className="mt-4 p-3 bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-600 rounded-md">
+                <h4 className="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-2">{t('livePreview')}</h4>
+                <div className="min-h-[40px] text-gray-800 dark:text-gray-200 text-start">
                     <LatexRenderer>{problem}</LatexRenderer>
                 </div>
             </div>
@@ -118,9 +118,9 @@ const ProblemInput: React.FC<ProblemInputProps> = ({ onSolve, onClear, isLoading
         {!imagePreview && <ExampleProblems problems={exampleProblems} onSelectProblem={handleSelectExample} isDisabled={areExamplesDisabled} />}
        
         <div className="flex items-center my-4">
-            <span className="flex-grow border-t border-gray-700"></span>
-            <span className="px-2 text-gray-500 text-sm">{t('or')}</span>
-            <span className="flex-grow border-t border-gray-700"></span>
+            <span className="flex-grow border-t border-gray-300 dark:border-gray-700"></span>
+            <span className="px-2 text-gray-400 dark:text-gray-500 text-sm">{t('or')}</span>
+            <span className="flex-grow border-t border-gray-300 dark:border-gray-700"></span>
         </div>
 
         <input
@@ -135,7 +135,7 @@ const ProblemInput: React.FC<ProblemInputProps> = ({ onSolve, onClear, isLoading
             type="button"
             onClick={() => fileInputRef.current?.click()}
             disabled={isLoading}
-            className="w-full flex items-center justify-center bg-gray-700 text-gray-200 font-bold py-3 px-4 rounded-md hover:bg-gray-600 disabled:bg-gray-500 disabled:cursor-not-allowed transition duration-200"
+            className="w-full flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-bold py-3 px-4 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 disabled:bg-gray-400 dark:disabled:bg-gray-500 disabled:cursor-not-allowed transition duration-200"
         >
             <ImageIcon className="w-5 h-5 me-2" />
             {t('uploadImage')}
@@ -147,7 +147,7 @@ const ProblemInput: React.FC<ProblemInputProps> = ({ onSolve, onClear, isLoading
               type="button"
               onClick={handleClear}
               disabled={isLoading && isSubmitDisabled}
-              className="w-full flex items-center justify-center bg-gray-600 text-white font-bold py-3 px-4 rounded-md hover:bg-gray-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition duration-200"
+              className="w-full flex items-center justify-center bg-gray-500 dark:bg-gray-600 text-white font-bold py-3 px-4 rounded-md hover:bg-gray-600 dark:hover:bg-gray-700 disabled:bg-gray-400 dark:disabled:bg-gray-500 disabled:cursor-not-allowed transition duration-200"
             >
               <ClearIcon className="w-5 h-5 me-2" />
               {t('clear')}

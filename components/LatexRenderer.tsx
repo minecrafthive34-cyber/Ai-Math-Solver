@@ -2,6 +2,7 @@ import React, { useLayoutEffect, useRef } from 'react';
 
 declare global {
   interface Window {
+    katex: any;
     renderMathInElement: (element: HTMLElement, options?: any) => void;
   }
 }
@@ -14,14 +15,15 @@ interface LatexRendererProps {
 const LatexRenderer: React.FC<LatexRendererProps> = ({ children, className }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // useLayoutEffect to run synchronously after all DOM mutations.
-  // This is better for DOM manipulations that need to be visible right away, preventing content flicker.
   useLayoutEffect(() => {
     const element = containerRef.current;
-    if (element && window.renderMathInElement) {
-      // Set raw text content. The auto-renderer will parse this.
+    if (!element) {
+      return;
+    }
+
+    // Check if KaTeX and its auto-render extension are loaded.
+    if (window.renderMathInElement && window.katex) {
       element.textContent = children;
-      
       try {
         window.renderMathInElement(element, {
           delimiters: [
@@ -35,7 +37,12 @@ const LatexRenderer: React.FC<LatexRendererProps> = ({ children, className }) =>
         });
       } catch (error) {
         console.error("KaTeX rendering error:", error);
+        // If rendering fails, ensure the raw text is displayed as a fallback.
+        element.textContent = children;
       }
+    } else {
+      // If KaTeX scripts are not ready, just display the raw text content.
+      element.textContent = children;
     }
   }, [children]);
 

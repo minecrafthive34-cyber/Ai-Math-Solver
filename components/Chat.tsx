@@ -74,14 +74,14 @@ const Chat: React.FC<ChatProps> = ({ chatSession, isEnabled, onNewChat }) => {
   };
 
   return (
-    <div className={`flex flex-col h-full bg-gray-800 rounded-lg border border-gray-700 shadow-lg`}>
-      <div className="flex justify-between items-center p-4 border-b border-gray-700 flex-shrink-0">
-        <h2 className="text-xl font-bold text-blue-400 text-start">
+    <div className={`flex flex-col h-full bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-lg`}>
+      <div className="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
+        <h2 className="text-xl font-bold text-blue-500 dark:text-blue-400 text-start">
           {t('tutorTitle')}
         </h2>
         <button 
           onClick={onNewChat}
-          className="text-gray-400 hover:text-blue-400 transition-colors p-1 rounded-md"
+          className="text-gray-500 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors p-1 rounded-md"
           aria-label={t('newChat')}
           title={t('newChat')}
         >
@@ -90,21 +90,21 @@ const Chat: React.FC<ChatProps> = ({ chatSession, isEnabled, onNewChat }) => {
       </div>
       <div className="flex-grow p-4 overflow-y-auto">
         {messages.length === 0 ? (
-          <div className="flex items-center justify-center h-full text-gray-500">
+          <div className="flex items-center justify-center h-full text-gray-400 dark:text-gray-500">
             <p>{t('followUpPlaceholder')}</p>
           </div>
         ) : (
           <div className="space-y-4">
             {messages.map((msg, index) => (
               <div key={index} className={`flex ${msg.role === ChatRole.USER ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-xs md:max-w-md lg:max-w-lg px-4 py-2 rounded-lg ${msg.role === ChatRole.USER ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-200'}`}>
+                <div className={`max-w-xs md:max-w-md lg:max-w-lg px-4 py-2 rounded-lg ${msg.role === ChatRole.USER ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-200'}`}>
                    <LatexRenderer className="whitespace-pre-wrap text-start">{msg.text}</LatexRenderer>
                 </div>
               </div>
             ))}
              {isStreaming && messages[messages.length-1]?.role === ChatRole.USER && (
                <div className="flex justify-start">
-                  <div className="max-w-xs md:max-w-md lg:max-w-lg px-4 py-2 rounded-lg bg-gray-700 text-gray-200">
+                  <div className="max-w-xs md:max-w-md lg:max-w-lg px-4 py-2 rounded-lg bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-200">
                     <LoadingSpinner className="w-5 h-5"/>
                   </div>
                 </div>
@@ -113,21 +113,21 @@ const Chat: React.FC<ChatProps> = ({ chatSession, isEnabled, onNewChat }) => {
           </div>
         )}
       </div>
-      <div className={`p-4 border-t border-gray-700 flex-shrink-0`}>
-        <div className="flex items-center bg-gray-900 rounded-lg">
+      <div className={`p-4 border-t border-gray-200 dark:border-gray-700 flex-shrink-0`}>
+        <div className="flex items-center bg-gray-100 dark:bg-gray-900 rounded-lg">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyPress}
             placeholder={t('askAQuestion')}
-            className="w-full bg-transparent p-3 focus:outline-none text-gray-200 placeholder-gray-500"
+            className="w-full bg-transparent p-3 focus:outline-none text-gray-800 dark:text-gray-200 placeholder-gray-500"
             disabled={isStreaming}
           />
           <button
             onClick={handleSend}
             disabled={isStreaming || !input.trim()}
-            className="p-3 text-blue-400 hover:text-blue-300 disabled:text-gray-600 disabled:cursor-not-allowed transition-colors"
+            className="p-3 text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300 disabled:text-gray-400 dark:disabled:text-gray-600 disabled:cursor-not-allowed transition-colors"
           >
             <SendIcon className={`w-6 h-6 ${language === 'ar' ? 'transform -scale-x-100' : ''}`} />
           </button>

@@ -35,7 +35,7 @@ const Clock: React.FC = () => {
   const dateString = date.toLocaleDateString(locale, dateOptions);
 
   return (
-    <div className="text-center text-gray-400 text-sm hidden sm:block">
+    <div className="text-center text-gray-500 dark:text-gray-400 text-sm hidden sm:block">
       <div>{timeString}</div>
       <div>{dateString}</div>
     </div>

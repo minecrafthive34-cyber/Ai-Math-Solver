@@ -30,16 +30,16 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
       role="dialog"
     >
       <div
-        className="bg-gray-800 rounded-lg shadow-xl w-full max-w-md border border-gray-700 p-6 sm:p-8 relative modal-content-enter"
+        className="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-md border border-gray-200 dark:border-gray-700 p-6 sm:p-8 relative modal-content-enter"
         onClick={(e) => e.stopPropagation()}
         dir={language === 'ar' ? 'rtl' : 'ltr'}
       >
-        <h2 className="text-xl sm:text-2xl font-bold text-yellow-400 mb-4 text-start">{title}</h2>
-        <p className="text-gray-300 leading-relaxed text-start mb-8">{message}</p>
+        <h2 className="text-xl sm:text-2xl font-bold text-yellow-500 dark:text-yellow-400 mb-4 text-start">{title}</h2>
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-start mb-8">{message}</p>
         <div className="flex justify-end gap-4">
           <button
             onClick={onClose}
-            className="bg-gray-600 text-white font-bold py-2 px-6 rounded-md hover:bg-gray-700 transition duration-200"
+            className="bg-gray-200 text-gray-800 dark:bg-gray-600 dark:text-white font-bold py-2 px-6 rounded-md hover:bg-gray-300 dark:hover:bg-gray-700 transition duration-200"
           >
             {t('cancel')}
           </button>

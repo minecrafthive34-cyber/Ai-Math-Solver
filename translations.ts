@@ -60,6 +60,14 @@ export const translations = {
     confirmClearHistory: 'Are you sure you want to clear all history? This action cannot be undone.',
     confirmClear: 'Clear',
     cancel: 'Cancel',
+
+    // Share
+    share: 'Share',
+    copyLink: 'Copy Link',
+    downloadImage: 'Download as Image',
+    linkCopied: 'Link Copied!',
+    generatingImage: 'Generating...',
+    shareLinkDisabledTooltip: 'Link sharing is only available for text-based problems.',
   },
   ar: {
     // Header
@@ -122,5 +130,13 @@ export const translations = {
     confirmClearHistory: 'هل أنت متأكد أنك تريد مسح كل السجل؟ لا يمكن التراجع عن هذا الإجراء.',
     confirmClear: 'مسح',
     cancel: 'إلغاء',
+
+    // Share
+    share: 'مشاركة',
+    copyLink: 'نسخ الرابط',
+    downloadImage: 'تنزيل كصورة',
+    linkCopied: 'تم نسخ الرابط!',
+    generatingImage: 'جارٍ الإنشاء...',
+    shareLinkDisabledTooltip: 'مشاركة الرابط متاحة فقط للمسائل النصية.',
   },
 };

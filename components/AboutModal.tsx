@@ -17,19 +17,19 @@ const AboutModal: React.FC<AboutModalProps> = ({ onClose }) => {
       role="dialog"
     >
       <div 
-        className="bg-gray-800 rounded-lg shadow-xl w-full max-w-2xl border border-gray-700 p-6 sm:p-8 relative modal-content-enter"
+        className="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-2xl border border-gray-200 dark:border-gray-700 p-6 sm:p-8 relative modal-content-enter"
         onClick={(e) => e.stopPropagation()}
         dir={language === 'ar' ? 'rtl' : 'ltr'}
       >
         <button
           onClick={onClose}
-          className="absolute top-4 end-4 text-gray-400 hover:text-white transition-colors"
+          className="absolute top-4 end-4 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
           aria-label={t('close')}
         >
           <CloseIcon className="w-6 h-6" />
         </button>
-        <h2 className="text-2xl sm:text-3xl font-bold text-blue-400 mb-6 text-start">{t('aboutTitle')}</h2>
-        <div className="space-y-4 text-gray-300 leading-relaxed text-start">
+        <h2 className="text-2xl sm:text-3xl font-bold text-blue-500 dark:text-blue-400 mb-6 text-start">{t('aboutTitle')}</h2>
+        <div className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed text-start">
           <p>{t('aboutText1')}</p>
           <p>{t('aboutText2')}</p>
         </div>

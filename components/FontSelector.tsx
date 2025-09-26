@@ -24,14 +24,14 @@ const FontSelector: React.FC = () => {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="text-gray-400 hover:text-blue-400 transition-colors flex items-center gap-2"
+        className="text-gray-500 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors flex items-center gap-2"
         aria-label={t('selectFont')}
       >
         <FontIcon />
       </button>
 
       {isOpen && (
-        <div className="absolute top-full mt-2 end-0 w-48 bg-gray-700 border border-gray-600 rounded-md shadow-lg z-10">
+        <div className="absolute top-full mt-2 end-0 w-48 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-md shadow-lg z-10">
           <ul className="py-1">
             {FONT_OPTIONS.map(option => (
               <li key={option.id}>
@@ -40,7 +40,7 @@ const FontSelector: React.FC = () => {
                     setFont(option.id);
                     setIsOpen(false);
                   }}
-                  className={`w-full text-start px-4 py-2 text-sm ${font === option.id ? 'bg-blue-600 text-white' : 'text-gray-200 hover:bg-gray-600'}`}
+                  className={`w-full text-start px-4 py-2 text-sm ${font === option.id ? 'bg-blue-600 text-white' : 'text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600'}`}
                 >
                   {option.name}
                 </button>

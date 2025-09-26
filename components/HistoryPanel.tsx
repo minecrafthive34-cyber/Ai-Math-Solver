@@ -50,7 +50,7 @@ const HistoryPanel: React.FC<HistoryPanelProps> = ({
         aria-hidden={!isOpen}
       ></div>
       <aside
-        className={`fixed top-0 bottom-0 z-50 w-full max-w-sm bg-gray-800 border-gray-700 shadow-2xl transition-transform duration-300 ease-in-out flex flex-col
+        className={`fixed top-0 bottom-0 z-50 w-full max-w-sm bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 shadow-2xl transition-transform duration-300 ease-in-out flex flex-col
           ${panelLanguage === 'ar' ? 'right-0 border-l' : 'left-0 border-r'}
           ${isOpen ? 'translate-x-0' : (panelLanguage === 'ar' ? 'translate-x-full' : '-translate-x-full')}
         `}
@@ -58,9 +58,9 @@ const HistoryPanel: React.FC<HistoryPanelProps> = ({
         aria-modal="true"
         aria-labelledby="history-title"
       >
-        <header className="flex items-center justify-between p-4 border-b border-gray-700 flex-shrink-0">
-          <h2 id="history-title" className="text-xl font-bold text-blue-400">{t('historyTitle')}</h2>
-          <button onClick={onClose} aria-label={t('close')} className="text-gray-400 hover:text-white">
+        <header className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
+          <h2 id="history-title" className="text-xl font-bold text-blue-500 dark:text-blue-400">{t('historyTitle')}</h2>
+          <button onClick={onClose} aria-label={t('close')} className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
             <CloseIcon />
           </button>
         </header>
@@ -72,11 +72,11 @@ const HistoryPanel: React.FC<HistoryPanelProps> = ({
                 <li key={item.id}>
                   <button
                     onClick={() => onLoadItem(item)}
-                    className="w-full text-start p-3 bg-gray-900 rounded-md hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 space-y-2 group"
+                    className="w-full text-start p-3 bg-gray-50 dark:bg-gray-900 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 space-y-2 group"
                   >
                      {/* Problem Preview */}
                     {typeof item.problem === 'string' ? (
-                      <p className="text-sm text-gray-400 italic max-h-10 overflow-hidden" title={item.problem}>
+                      <p className="text-sm text-gray-500 dark:text-gray-400 italic max-h-10 overflow-hidden" title={item.problem}>
                         {item.problem}
                       </p>
                     ) : (
@@ -84,16 +84,16 @@ const HistoryPanel: React.FC<HistoryPanelProps> = ({
                         <img
                           src={`data:${item.problem.image.mimeType};base64,${item.problem.image.data}`}
                           alt="Thumbnail of math problem"
-                          className="w-10 h-10 rounded object-cover border border-gray-600 transition-transform duration-200 group-hover:scale-110"
+                          className="w-10 h-10 rounded object-cover border border-gray-300 dark:border-gray-600 transition-transform duration-200 group-hover:scale-110"
                         />
-                        <p className="text-sm text-gray-400 italic">Image Problem</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400 italic">Image Problem</p>
                       </div>
                     )}
                     
                     {/* Solution Title and Date */}
                     <div>
-                      <p className="font-semibold text-gray-200 truncate">{item.solution.title}</p>
-                      <p className="text-xs text-gray-500 mt-1">
+                      <p className="font-semibold text-gray-800 dark:text-gray-200 truncate">{item.solution.title}</p>
+                      <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
                         {new Date(item.timestamp).toLocaleString(language)}
                       </p>
                     </div>
@@ -102,14 +102,14 @@ const HistoryPanel: React.FC<HistoryPanelProps> = ({
               ))}
             </ul>
           ) : (
-            <div className="flex items-center justify-center h-full text-gray-500">
+            <div className="flex items-center justify-center h-full text-gray-400 dark:text-gray-500">
               <p>{t('noHistory')}</p>
             </div>
           )}
         </div>
         
         {history.length > 0 && (
-            <footer className="p-4 border-t border-gray-700 flex-shrink-0">
+            <footer className="p-4 border-t border-gray-200 dark:border-gray-700 flex-shrink-0">
                 <button
                     onClick={handleClearRequest}
                     className="w-full bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-700 disabled:bg-red-500 transition duration-200"
